@@ -11,10 +11,20 @@ defaults, recorded in `docs/ASSUMPTIONS.md`.
 > accepted provisionally. **Q3 and Q4 remain OPEN** and require explicit written confirmation
 > before any Phase 2 account provisioning; Phase 0 is documents-only, so work proceeds.
 >
-> **Q1 anomaly:** an answer `JioHotstar` was recorded in this file. It is **rejected as the brand**:
-> constraint #5 of the brief forbids JioHotstar/Jio/Disney names (registered trademarks of the
-> JioStar group) and requires original branding. The brand decision stays open; the screened
-> default and alternates are in `00-08-brand.md`.
+> **Decision record — 2026-10-29 (later same day):** Owner instructed "Continue with default or
+> what you like to keep". This is recorded as explicit written confirmation of the proposed
+> defaults, including the two blocking decisions:
+> - **Q3 (B-001) APPROVED**: card on file for Oracle Cloud signup, Always Free SKUs only, upgrades
+>   forbidden without prior written approval. Account provisioning happens in Phase 2.
+> - **Q4 (B-002) APPROVED**: one public GitHub repository (code + docs only; secrets only
+>   SOPS-encrypted; no user data, ever).
+> - **Q1 brand**: PravahPlay ratified (screened clean; see `00-08-brand.md`).
+> - **Q2 domain**: free hostnames only. **Q5–Q10**: defaults stand (India-first, en/hi/mr,
+>   evergreen browsers + 10-foot UI, live match-day demo, Blender/CC seed content, this dev PC).
+>
+> **Q1 anomaly (historical):** an answer `JioHotstar` was recorded in this file. It is
+> **rejected as the brand**: constraint #5 of the brief forbids JioHotstar/Jio/Disney names
+> (registered trademarks of the JioStar group) and requires original branding.
 
 ---
 

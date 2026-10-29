@@ -19,18 +19,18 @@ trigger. Superseded entries stay in place, marked superseded.
 | A-007 | 2026-10-29 | Seed content = Blender open movies + FFmpeg test media + CC audio + generated data | Asset pipeline and license manifest change | active (default) |
 | A-008 | 2026-10-29 | Dev machine budget: this PC (8C/12T, 15.7 GB) with ~8 GB for Docker/WSL2 containers | Dev topology shrinks (compose-only, k3d optional) via ADR | active (default) |
 
-## Blocking decisions (explicitly NOT assumed)
+## Blocking decisions — RESOLVED 2026-10-29 ("Continue with default" instruction)
 
-| ID | Date | Decision | Why blocking |
+| ID | Date | Decision | Source |
 |---|---|---|---|
-| B-001 | 2026-10-29 | Q3 — Oracle Cloud card on file for Always Free identity check | Cost class: the brief requires explicit written approval for anything card-on-file; also changes Phase 2 infra design |
-| B-002 | 2026-10-29 | Q4 — public vs private GitHub repo | Legal class: publishing code is the owner's call; determines whether zero-cost CI/CD is achievable |
-
-Both blocking decisions require explicit written confirmation **before Phase 2 provisioning**
-(account creation). Phase 0 document work does not depend on them, so it proceeds.
+| B-001 | 2026-10-29 | **APPROVED** — card on file for Oracle Always Free signup; Always Free SKUs only; upgrades forbidden without prior written approval. Provisioning happens in Phase 2. | Owner: "Continue with default or what you like to keep" |
+| B-002 | 2026-10-29 | **APPROVED** — one public GitHub repository (code + docs only; SOPS-encrypted secrets only; no user data, ever) | Owner: "Continue with default or what you like to keep" |
 
 ## Confirmed
 
 | ID | Date | Assumption/decision | Source |
 |---|---|---|---|
-| — | — | (none yet) | — |
+| C-001 | 2026-10-29 | Brand = **PravahPlay** (screened clean; owner ratifies default) | Owner default acceptance |
+| C-002 | 2026-10-29 | Free hostnames only (pages.dev + sslip.io/Let's Encrypt); paid domain stays rejected without written approval | Owner default acceptance |
+| C-003 | 2026-10-29 | India-first, en/hi/mr, evergreen browsers + 10-foot UI, live match-day flagship demo, Blender/CC seed content, this dev PC (~8 GB container budget) | Owner default acceptance |
+| C-004 | 2026-10-29 | Repo location stays in OneDrive through Phase 1; relocate before Phase 2 public repo creation (risk R16) | Owner default acceptance (relocation pending) |

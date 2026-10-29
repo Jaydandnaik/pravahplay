@@ -1,26 +1,19 @@
 # PROGRESS
 
-**Current phase:** 0 — COMPLETE (gate report posted 2026-10-29). **Stopped, awaiting APPROVED
-PHASE 0.** No feature code until APPROVED PHASE 0 and APPROVED PHASE 1.
+**Current phase:** 1 — COMPLETE (gate report posted 2026-10-29). **Stopped, awaiting APPROVED
+PHASE 1.** No feature code until APPROVED PHASE 1 (Phase 2 scaffolding begins then).
 
-**Owner decisions open (block Phase 2 provisioning, not Phase 1 design):**
-B-001/Q3 Oracle card approval · B-002/Q4 public-repo approval · brand ratification (PravahPlay) ·
-optional repo relocation out of OneDrive (R16).
+**Decisions resolved 2026-10-29 ("Continue with default"):** B-001 Oracle card approved · B-002
+public repo approved · brand = PravahPlay (C-001) · defaults for Q2/Q5–Q10 confirmed (C-002/C-003).
 
 | Area | Status | Notes |
 |---|---|---|
-| Workspace bootstrap (git, docs skeleton) | ✅ Done 2026-10-29 | main; Conventional Commits |
-| Kickoff questions + answer record | ✅ Done | defaults active; JioHotstar answer rejected (trademark) |
-| Free-tier verification (18 services) | ✅ Done 2026-10-29 | COST_REGISTER verified w/ sources; 4 open actions |
-| 00-01 Personas & journeys | ✅ Done | 7 personas, 12 journeys, 3 sequences |
-| 00-02 Feature inventory | ✅ Done | MoSCoW → phases, cutlines, Won't-haves |
-| 00-03 NFRs & SLOs | ✅ Done | 9 SLOs, D0–D4 ladder |
-| 00-04 Capacity model | ✅ Done | evidence classes; Oracle 2/12 worst case; R2 budget |
-| 00-05 Cost register snapshot | ✅ Done | headlines incl. Oracle halving |
-| 00-06 Risk register | ✅ Done | 18 risks |
-| 00-07 Content & legal plan | ✅ Done | asset manifest, data map |
-| 00-08 Brand + wordmark SVG | ✅ Done | PravahPlay clean; owner ratifies at gate |
-| 00-09 Stack + ADR-0001…0008 | ✅ Done | 8 seed ADRs |
-| 00-10 Gate report | ✅ Done | stopped at gate |
-| Phase 1 (system design) | ⬜ Not started | plan sketched in 00-10; starts on APPROVED PHASE 0 |
-| Feature code | 🔒 Locked | per working agreement |
+| Phase 0 (all docs, registers, ADRs 1–8, gate) | ✅ Done | `00-00…00-10` |
+| Phase 1 design docs (10-01…10-12) | ✅ Done 2026-10-29 | C4, ERDs, contracts, flows, pipeline, ads, live, caching, FMEA, DR, STRIDE, observability |
+| Spike S1 (SSAI stitch, FFmpeg/HLS) | ✅ Measured | p99 0.05 ms; bit-exact 70 s playlist, full decode clean |
+| Spike S2 (PG event write rate) | ✅ Measured | 68,946 rows/s (≈57× design target, 1M CCV) |
+| Spike S3 (RAM budget topology) | ✅ Measured | idle 349 MiB; projection 4.2–5.8 GB vs 12 GB budget |
+| ADRs 0009–0016 | ✅ Done | set now 16 |
+| Phase 1 gate report | ✅ Done | `10-99-phase-1-gate-report.md` |
+| Phase 2 (DevOps skeleton, walking skeleton) | ⬜ Not started | starts on APPROVED PHASE 1; first steps: OneDrive relocation, GitHub repo (public, approved), Oracle signup (approved) |
+| Feature code | 🔒 Locked | walking skeleton is the first permitted code (Phase 2) |
