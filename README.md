@@ -1,4 +1,8 @@
-# APP_NAME (working name — final brand locked in Phase 0)
+# PravahPlay (working name — owner ratifies at the Phase 0 gate)
+
+> Note: a `JioHotstar` name was recorded by the owner and **rejected** — it is a registered
+> trademark of the JioStar group and is forbidden by this project's own constraint #2 below and
+> by the brief. Screening and rationale: `docs/00-08-brand.md`.
 
 Zero-cost, production-grade OTT streaming platform built with the publicly known architecture
 patterns of large-scale live-sports streaming services: CDN-first HLS/DASH delivery, server-side
