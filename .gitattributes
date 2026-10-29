@@ -1,0 +1,18 @@
+# Normalize: text files get LF in the repo (Linux containers are the runtime target)
+* text=auto eol=lf
+
+# Windows-only scripts keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# Shell scripts must stay LF
+*.sh text eol=lf
+
+# Binaries
+*.png binary
+*.jpg binary
+*.svg text
+*.mp4 binary
+*.webm binary
+*.woff2 binary
