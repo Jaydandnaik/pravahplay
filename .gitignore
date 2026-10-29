@@ -1,0 +1,34 @@
+# dependencies
+node_modules/
+.pnpm-store/
+
+# build output
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# env & secrets — never commit real secrets; SOPS-encrypted files use *.enc suffixes tracked deliberately
+.env
+.env.*
+*.local
+secrets/**
+!secrets/**/*.enc
+
+# media artifacts generated locally
+media/tmp/
+tmp/
+
+# editor/OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# terraform/tofu state
+*.tfstate
+*.tfstate.*
+.terraform/
+.tofu/
