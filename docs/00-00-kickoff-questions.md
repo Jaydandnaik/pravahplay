@@ -7,6 +7,15 @@ defaults, recorded in `docs/ASSUMPTIONS.md`.
 **Blocking (decision-class, work waits):** Q3 (cost), Q4 (legal).
 **Non-blocking:** Q1, Q2, Q5–Q10.
 
+> **Answer record — 2026-10-29:** Owner instructed "Move to next step": all non-blocking defaults
+> accepted provisionally. **Q3 and Q4 remain OPEN** and require explicit written confirmation
+> before any Phase 2 account provisioning; Phase 0 is documents-only, so work proceeds.
+>
+> **Q1 anomaly:** an answer `JioHotstar` was recorded in this file. It is **rejected as the brand**:
+> constraint #5 of the brief forbids JioHotstar/Jio/Disney names (registered trademarks of the
+> JioStar group) and requires original branding. The brand decision stays open; the screened
+> default and alternates are in `00-08-brand.md`.
+
 ---
 
 ## Q1 — Brand name *(non-blocking; docs use the default as working name)*
@@ -16,7 +25,10 @@ defaults, recorded in `docs/ASSUMPTIONS.md`.
 chosen name and delivers an SVG wordmark concept in `00-08-brand.md`. Final pick is yours at the
 gate.
 
-Answer: `____________________`
+Answer: `JioHotstar` — ⚠️ **rejected** (trademark conflict with constraint #5); awaiting a lawful
+original name. Note: screening on 2026-10-29 found **StreamSetu is already in use**
+(streamsetu.com, a Jaipur-based live-streaming service, same industry) — screened out. See
+`00-08-brand.md` for screened alternates.
 
 ## Q2 — Domain strategy *(non-blocking)*
 

@@ -6,18 +6,18 @@ here and work continues. Only cost, legal or irreversible decisions stop work.
 Each entry records: date, the assumption, why it is reasonable, the impact if wrong, and the review
 trigger. Superseded entries stay in place, marked superseded.
 
-## Provisional (kickoff defaults — pending answers to `00-00-kickoff-questions.md`)
+## Active defaults (owner instructed 2026-10-29 to proceed; per-answer overrides welcome at any gate)
 
 | ID | Date | Assumption (default) | Impact if wrong | Status |
 |---|---|---|---|---|
-| A-001 | 2026-10-29 | Working brand name = **StreamSetu** until Q1 answered | Cheap now: renames touch docs only | provisional |
-| A-002 | 2026-10-29 | Free hostnames only; a paid domain needs written approval | URLs change later; edge config redo | provisional |
-| A-003 | 2026-10-29 | India-first launch: INR, IST prime-time traffic shape, Razorpay test mode | Capacity model geography, payments adapter, ad formats change | provisional |
-| A-004 | 2026-10-29 | UI/content languages: en + hi + mr at launch, i18n extensible | More translation work, larger i18n test matrix | provisional |
-| A-005 | 2026-10-29 | Devices: evergreen desktop + Android Chrome PWA + iOS best-effort + 10-foot UI; no native apps | Player/device test matrix grows | provisional |
-| A-006 | 2026-10-29 | Flagship demo = live match day (simulated) | Demo script and Phase 8 emphasis shift | provisional |
-| A-007 | 2026-10-29 | Seed content = Blender open movies + FFmpeg test media + CC audio + generated data | Asset pipeline and license manifest change | provisional |
-| A-008 | 2026-10-29 | Dev machine budget: this PC (8C/12T, 15.7 GB) with ~8 GB for Docker/WSL2 containers | Dev topology shrinks (compose-only, k3d optional) via ADR | provisional |
+| A-001 | 2026-10-29 | Working brand name = **PravahPlay** (screened 2026-10-29: no web presence found; `StreamSetu`/`ChitraPlay`/`TaraStream`/`GullyPlay` all screened out as in-use; a recorded `JioHotstar` answer rejected — trademark, constraint #5). Owner ratifies at the Phase 0 gate | Cheap now: renames touch docs only | active (default) |
+| A-002 | 2026-10-29 | Free hostnames only; a paid domain needs written approval | URLs change later; edge config redo | active (default) |
+| A-003 | 2026-10-29 | India-first launch: INR, IST prime-time traffic shape, Razorpay test mode | Capacity model geography, payments adapter, ad formats change | active (default) |
+| A-004 | 2026-10-29 | UI/content languages: en + hi + mr at launch, i18n extensible | More translation work, larger i18n test matrix | active (default) |
+| A-005 | 2026-10-29 | Devices: evergreen desktop + Android Chrome PWA + iOS best-effort + 10-foot UI; no native apps | Player/device test matrix grows | active (default) |
+| A-006 | 2026-10-29 | Flagship demo = live match day (simulated) | Demo script and Phase 8 emphasis shift | active (default) |
+| A-007 | 2026-10-29 | Seed content = Blender open movies + FFmpeg test media + CC audio + generated data | Asset pipeline and license manifest change | active (default) |
+| A-008 | 2026-10-29 | Dev machine budget: this PC (8C/12T, 15.7 GB) with ~8 GB for Docker/WSL2 containers | Dev topology shrinks (compose-only, k3d optional) via ADR | active (default) |
 
 ## Blocking decisions (explicitly NOT assumed)
 
@@ -25,6 +25,9 @@ trigger. Superseded entries stay in place, marked superseded.
 |---|---|---|---|
 | B-001 | 2026-10-29 | Q3 — Oracle Cloud card on file for Always Free identity check | Cost class: the brief requires explicit written approval for anything card-on-file; also changes Phase 2 infra design |
 | B-002 | 2026-10-29 | Q4 — public vs private GitHub repo | Legal class: publishing code is the owner's call; determines whether zero-cost CI/CD is achievable |
+
+Both blocking decisions require explicit written confirmation **before Phase 2 provisioning**
+(account creation). Phase 0 document work does not depend on them, so it proceeds.
 
 ## Confirmed
 
