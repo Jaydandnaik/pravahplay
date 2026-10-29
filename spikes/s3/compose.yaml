@@ -1,0 +1,42 @@
+# SPIKE S3: RAM budget of the free-VM topology (production-like memory caps, 00-04 §6)
+services:
+  pg:
+    image: postgres:16-alpine
+    environment: { POSTGRES_PASSWORD: spike, POSTGRES_DB: spike }
+    command: [postgres, -c, shared_buffers=256MB, -c, max_connections=80]
+    mem_limit: 1500m
+  valkey:
+    image: valkey/valkey:8-alpine
+    command: [valkey-server, --maxmemory, 300mb, --maxmemory-policy, allkeys-lru, --save, "60", "1"]
+    mem_limit: 400m
+  redpanda:
+    image: redpandadata/redpanda:v24.3.6
+    command:
+      - redpanda
+      - start
+      - --smp=1
+      - --memory=700M
+      - --reserve-memory=0M
+      - --overprovisioned
+      - --node-id=0
+      - --kafka-addr=PLAINTEXT://0.0.0.0:9092
+      - --advertise-kafka-addr=PLAINTEXT://redpanda:9092
+      - --set redpanda.enable_idempotence=true
+    mem_limit: 1000m
+  api:
+    image: node:22-alpine
+    command: ["node", "-e", "const h=require('http');h.createServer((q,s)=>{s.end('ok')}).listen(8080)"]
+    mem_limit: 400m
+  prometheus:
+    image: prom/prometheus:v3.2.1
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command: [--config.file=/etc/prometheus/prometheus.yml, --storage.tsdb.retention.time=15d]
+    mem_limit: 500m
+  grafana:
+    image: grafana/grafana:11.5.2
+    environment: { GF_AUTH_ANONYMOUS_ENABLED: "true" }
+    mem_limit: 300m
+  otel:
+    image: otel/opentelemetry-collector-contrib:0.120.0
+    mem_limit: 200m

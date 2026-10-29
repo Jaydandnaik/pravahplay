@@ -18,6 +18,11 @@ secrets/**
 # media artifacts generated locally
 media/tmp/
 tmp/
+tools/
+spikes/s1/out/
+spikes/s1/ad_src/
+spikes/s2/node_modules/
+spikes/s3/prometheus.yml
 
 # editor/OS
 .DS_Store
