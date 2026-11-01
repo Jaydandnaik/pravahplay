@@ -34,3 +34,5 @@ trigger. Superseded entries stay in place, marked superseded.
 | C-002 | 2026-10-29 | Free hostnames only (pages.dev + sslip.io/Let's Encrypt); paid domain stays rejected without written approval | Owner default acceptance |
 | C-003 | 2026-10-29 | India-first, en/hi/mr, evergreen browsers + 10-foot UI, live match-day flagship demo, Blender/CC seed content, this dev PC (~8 GB container budget) | Owner default acceptance |
 | C-004 | 2026-10-29 | Repo location stays in OneDrive through Phase 1; relocate before Phase 2 public repo creation (risk R16) | Owner default acceptance (relocation pending) |
+
+| A-009 | 2026-11-01 | Dev machine shadows common ports (8080 = Jenkins, 5432 = shadowed listener); dev topology uses host ports 5434 (PG) and 8090 (API) | Only dev-local; production ports are container-internal | active |

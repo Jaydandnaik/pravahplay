@@ -17,3 +17,17 @@ public repo approved · brand = PravahPlay (C-001) · defaults for Q2/Q5–Q10 c
 | Phase 1 gate report | ✅ Done | `10-99-phase-1-gate-report.md` |
 | Phase 2 (DevOps skeleton, walking skeleton) | ⬜ Not started | starts on APPROVED PHASE 1; first steps: OneDrive relocation, GitHub repo (public, approved), Oracle signup (approved) |
 | Feature code | 🔒 Locked | walking skeleton is the first permitted code (Phase 2) |
+
+---
+
+## Phase 2 (2026-11-01)
+
+**Status: locally complete, production OWNER-BLOCKED. Gate report: `docs/20-99-phase-2-gate-report.md`.**
+
+- ✅ Monorepo (pnpm+Turborepo), 5 shared packages, walking-skeleton API + web — build 9/9, tests 5/5 green
+- ✅ Postgres persistence verified end to end (heartbeat row via psql)
+- ✅ Observability chain verified: Prometheus scrape up · real traces in Tempo · Loki v3 up
+- ✅ CI pipeline (scan+SBOM+GHCR), Helm chart, k3d config, tofu/ansible skeletons, alerts+runbook+dashboard
+- ⬜ Owner: create GitHub repo (public) or install gh CLI → I push
+- ⬜ Owner: Oracle Cloud Always Free signup (card+browser) → I provision k3s via ansible/tofu
+- ⬜ Then: helm/k3d local rollback drill → production deploy → APPROVED PHASE 2
