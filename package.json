@@ -1,0 +1,25 @@
+{
+  "name": "pravahplay",
+  "private": true,
+  "packageManager": "pnpm@10.30.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "dev:compose": "docker compose -f infra/compose.dev.yaml up -d",
+    "dev:migrate": "pnpm --filter @pravah/api db:migrate",
+    "dev:api": "pnpm --filter @pravah/api dev"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.6",
+    "eslint": "^10.13.0",
+    "prettier": "^3.5.0",
+    "turbo": "^2.5.0",
+    "typescript": "^7.0.2",
+    "typescript-eslint": "^8.72.1"
+  }
+}

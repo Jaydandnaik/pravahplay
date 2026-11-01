@@ -1,0 +1,4 @@
+
+> @pravah/config@0.1.0 build C:\dev\pravahplay\packages\config
+> tsc -p tsconfig.json
+

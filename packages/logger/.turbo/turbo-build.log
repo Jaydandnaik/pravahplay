@@ -1,0 +1,4 @@
+
+> @pravah/logger@0.1.0 build C:\dev\pravahplay\packages\logger
+> tsc -p tsconfig.json
+

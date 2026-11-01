@@ -1,0 +1,4 @@
+
+> @pravah/telemetry@0.1.0 build C:\dev\pravahplay\packages\telemetry
+> tsc -p tsconfig.json
+

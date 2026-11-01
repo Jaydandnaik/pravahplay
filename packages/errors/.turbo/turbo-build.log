@@ -1,0 +1,4 @@
+
+> @pravah/errors@0.1.0 build C:\dev\pravahplay\packages\errors
+> tsc -p tsconfig.json
+
