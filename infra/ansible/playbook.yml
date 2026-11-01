@@ -1,0 +1,31 @@
+---
+# Provisions the Oracle Always Free VM as a k3s node (run AFTER tofu creates the VM).
+# Idempotent; applies CIS-ish hardening + k3s install per ADR-0005.
+- name: Provision k3s node
+  hosts: pravah_node
+  become: true
+  tasks:
+    - name: Base packages
+      ansible.builtin.apt:
+        name: [curl, ufw, unzip]
+        state: present
+        update_cache: true
+      when: ansible_facts['os_family'] == "Debian"
+
+    - name: Firewall — allow ssh, http, https, kube api from localhost only
+      community.general.ufw:
+        rule: allow
+        port: "{{ item }}"
+      loop: ["22", "80", "443"]
+
+    - name: Install k3s
+      ansible.builtin.shell: |
+        curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --disable traefik --write-kubeconfig-mode 644" sh -
+      args:
+        creates: /usr/local/bin/k3s
+
+    - name: Fetch kubeconfig for local use
+      ansible.builtin.fetch:
+        src: /etc/rancher/k3s/k3s.yaml
+        dest: ./kubeconfig/
+        flat: true

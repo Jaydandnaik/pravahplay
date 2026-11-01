@@ -1,0 +1,128 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: {{ .Values.serviceAccount.name }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pravah-api-config
+data:
+  NODE_ENV: {{ .Values.global.environment | quote }}
+  SERVICE_NAME: pravah-api
+  LOG_LEVEL: {{ .Values.api.env.LOG_LEVEL | quote }}
+  OTEL_ENABLED: {{ .Values.api.env.OTEL_ENABLED | quote }}
+  OTEL_EXPORTER_OTLP_ENDPOINT: {{ .Values.api.env.OTEL_EXPORTER_OTLP_ENDPOINT | quote }}
+  DATABASE_URL: postgres://{{ .Values.postgres.auth.username }}:{{ .Values.postgres.auth.password | default "pravah" }}@postgres:5432/{{ .Values.postgres.auth.database }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pravah-api
+  labels: { app: pravah-api }
+spec:
+  replicas: {{ .Values.api.replicas }}
+  selector:
+    matchLabels: { app: pravah-api }
+  template:
+    metadata:
+      labels: { app: pravah-api }
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "8080"
+        prometheus.io/path: /metrics
+    spec:
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      containers:
+        - name: api
+          image: "{{ .Values.api.image.repository }}:{{ .Values.api.image.tag }}"
+          imagePullPolicy: {{ .Values.api.image.pullPolicy }}
+          ports: [{ containerPort: 8080 }]
+          envFrom:
+            - configMapRef: { name: pravah-api-config }
+          readinessProbe:
+            httpGet: { path: /readyz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          livenessProbe:
+            httpGet: { path: /healthz, port: 8080 }
+            initialDelaySeconds: 5
+            periodSeconds: 15
+          resources:
+            requests: {{- toYaml .Values.api.resources.requests | nindent 12 }}
+            limits: {{- toYaml .Values.api.resources.limits | nindent 12 }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pravah-api
+spec:
+  selector: { app: pravah-api }
+  ports: [{ port: 80, targetPort: 8080 }]
+{{- if .Values.postgres.enabled }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: postgres-credentials
+stringData:
+  POSTGRES_DB: {{ .Values.postgres.auth.database }}
+  POSTGRES_USER: {{ .Values.postgres.auth.username }}
+  POSTGRES_PASSWORD: {{ .Values.postgres.auth.password | default "pravah" }}
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels: { app: postgres }
+  template:
+    metadata:
+      labels: { app: postgres }
+    spec:
+      containers:
+        - name: postgres
+          image: {{ .Values.postgres.image }}
+          envFrom:
+            - secretRef: { name: postgres-credentials }
+          ports: [{ containerPort: 5432 }]
+          volumeMounts:
+            - { name: data, mountPath: /var/lib/postgresql/data }
+          resources:
+            requests: {{- toYaml .Values.postgres.resources.requests | nindent 12 }}
+            limits: {{- toYaml .Values.postgres.resources.limits | nindent 12 }}
+  volumeClaimTemplates:
+    - metadata: { name: data }
+      spec:
+        accessModes: [ReadWriteOnce]
+        resources: { requests: { storage: {{ .Values.postgres.storage }} } }
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+spec:
+  selector: { app: postgres }
+  ports: [{ port: 5432 }]
+{{- end }}
+{{- if .Values.api.ingress.enabled }}
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pravah-api
+spec:
+  rules:
+    - host: {{ .Values.api.ingress.host }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pravah-api
+                port: { number: 80 }
+{{- end }}

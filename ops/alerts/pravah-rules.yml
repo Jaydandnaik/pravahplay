@@ -1,0 +1,24 @@
+groups:
+  - name: pravah-api
+    rules:
+      - alert: ApiDown
+        expr: up{job="pravah-api"} == 0
+        for: 2m
+        labels: { severity: critical, runbook: RB-01 }
+        annotations:
+          summary: "pravah-api unreachable from Prometheus"
+          runbook_url: "https://github.com/OWNER/pravahplay/blob/main/ops/runbooks/RB-01-api-down.md"
+      - alert: ApiHighErrorRate
+        expr: sum(rate(http_request_duration_seconds_count{status=~"5.."}[5m])) / sum(rate(http_request_duration_seconds_count[5m])) > 0.05
+        for: 5m
+        labels: { severity: critical, runbook: RB-01 }
+        annotations:
+          summary: "5xx rate above 5% for 5m"
+  - name: platform
+    rules:
+      - alert: BackupAge
+        expr: time() - pravah_backup_last_success_unixtime > 90000
+        for: 10m
+        labels: { severity: warning, runbook: RB-02 }
+        annotations:
+          summary: "Last successful Postgres backup older than 25h"

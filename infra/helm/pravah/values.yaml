@@ -1,0 +1,33 @@
+global:
+  environment: development
+  imageRegistry: ghcr.io
+
+api:
+  image:
+    repository: ghcr.io/OWNER/pravah-api
+    tag: latest
+    pullPolicy: IfNotPresent
+  replicas: 1
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+    limits: { cpu: "1", memory: 512Mi }
+  env:
+    LOG_LEVEL: info
+    OTEL_ENABLED: "true"
+    OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector.observability:4318
+  ingress:
+    enabled: false
+    host: api.local
+
+postgres:
+  enabled: true # dev profile; production uses the VM-managed instance (ADR-0002)
+  image: postgres:16-alpine
+  auth: { database: pravah, username: pravah }
+  resources:
+    requests: { cpu: 100m, memory: 256Mi }
+    limits: { cpu: "1", memory: 1Gi }
+  storage: 5Gi
+
+serviceAccount:
+  create: true
+  name: pravah-api

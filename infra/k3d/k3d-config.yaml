@@ -1,0 +1,14 @@
+kind: Config
+apiVersion: k3d.io/v1alpha5
+metadata:
+  name: pravah
+servers: 1
+agents: 1
+ports:
+  - port: 8081:80
+    nodeFilters: [loadbalancer]
+options:
+  k3s:
+    extraArgs:
+      - arg: --disable=traefik
+        nodeFilters: [server:*]

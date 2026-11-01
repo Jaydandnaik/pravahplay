@@ -1,0 +1,3 @@
+[pravah_node]
+# VM public IP goes here after `tofu apply` (owner-provisioned tenancy)
+# pravah ansible_host=1.2.3.4 ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/pravah.pem

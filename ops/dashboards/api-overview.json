@@ -1,0 +1,48 @@
+{
+  "title": "Pravah API — walking skeleton",
+  "uid": "pravah-api-1",
+  "schemaVersion": 39,
+  "refresh": "10s",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "QPS by status",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "sum(rate(http_request_duration_seconds_count[1m])) by (status)",
+          "legendFormat": "{{status}}"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "p95 latency",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le))",
+          "legendFormat": "p95"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Liveness",
+      "gridPos": { "h": 4, "w": 12, "x": 0, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [{ "expr": "up{job=\"pravah-api\"}", "legendFormat": "up" }]
+    },
+    {
+      "type": "timeseries",
+      "title": "Process RSS (MB)",
+      "gridPos": { "h": 4, "w": 12, "x": 12, "y": 8 },
+      "datasource": { "type": "prometheus", "uid": "prometheus" },
+      "targets": [
+        { "expr": "process_resident_memory_bytes{job=\"pravah-api\"}/1048576", "legendFormat": "rss" }
+      ]
+    }
+  ]
+}
