@@ -7,6 +7,7 @@ dist/
 build/
 coverage/
 *.tsbuildinfo
+.turbo/
 
 # env & secrets — never commit real secrets; SOPS-encrypted files use *.enc suffixes tracked deliberately
 .env
