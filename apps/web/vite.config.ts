@@ -6,9 +6,9 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/v1': 'http://localhost:8080',
-      '/healthz': 'http://localhost:8080',
-      '/readyz': 'http://localhost:8080',
+      '/v1': 'http://localhost:8090',
+      '/healthz': 'http://localhost:8090',
+      '/readyz': 'http://localhost:8090',
     },
   },
   build: { sourcemap: true },

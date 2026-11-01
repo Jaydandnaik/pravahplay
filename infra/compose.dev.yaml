@@ -9,7 +9,7 @@ services:
       POSTGRES_USER: pravah
       POSTGRES_PASSWORD: pravah
       POSTGRES_DB: pravah
-    ports: ["5432:5432"]
+    ports: ["5434:5432"] # host port 5434: machine-local 5432 is shadowed by another listener
     volumes: [pgdata:/var/lib/postgresql/data]
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U pravah"]

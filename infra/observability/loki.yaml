@@ -5,20 +5,27 @@ server:
 
 common:
   path_prefix: /loki
-  storage:
-    filesystem:
-      chunks_directory: /loki/chunks
-      rules_directory: /loki/rules
   replication_factor: 1
   ring:
     kvstore:
       store: inmemory
 
-limits_config:
-  retention_period: 168h
+schema_config:
+  configs:
+    - from: 2026-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
 
-ruler:
-  storage:
-    type: local
-    local:
-      directory: /loki/rules
+storage_config:
+  filesystem:
+    directory: /loki/chunks
+  tsdb_shipper:
+    active_index_directory: /loki/tsdb-index
+    cache_location: /loki/tsdb-cache
+
+# dev: no retention config (Loki 3.x retention requires object storage);
+# dev volume is disposable — production uses S3/R2-backed config (10-12).
