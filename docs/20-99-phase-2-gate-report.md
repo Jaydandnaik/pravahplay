@@ -64,3 +64,23 @@ Install helm+k3d → image build → k3d deploy → **rollback drill** (exit cri
 **APPROVED PHASE 2** → Phase 3 (identity, accounts, profiles).
 
 **Work is stopped here per the working agreement.**
+
+---
+
+## Addendum (2026-11-03): k3d + Helm deploy and ROLLBACK DRILL — PASSED
+
+Phase 2 gate re-approved by owner ("Move forward", production deploy explicitly deferred).
+
+| Step | Result |
+|---|---|
+| helm/k3d installed | k3d v5.9.0 (k3s v1.35.5), helm v3.16.4 |
+| API image (multi-stage) | `pravah-api:dev` 645 MB (full workspace carried — trim in Phase 2b hardening) |
+| k3d cluster | server + agent Ready; kubeconfig patched to 127.0.0.1 (this machine's DNS resolves host.docker.internal to a LAN IP — machine quirk, A-010) |
+| `helm install pravah` | postgres-0 + pravah-api both 1/1 Running, probes green |
+| In-cluster migration | `kubectl exec … node dist/db/migrate.js` → `[migrate] done` |
+| LB probes | `:8081/healthz` ok · `/readyz` ready · heartbeat persisted pre-rollback |
+| **Rollback drill** | broken tag deployed → new pod `ErrImageNeverPull` while old pod kept serving (rolling-update safety net observed) → `helm rollback pravah 1 --wait` → **success**, pod healthy, post-rollback heartbeat persisted |
+
+Exit criterion "rollback tested" is now met **in Kubernetes locally**. Remaining for production exit
+(owner-blocked, unchanged): GitHub repo push + CI green; Oracle VM → k3s → Argo; deploy + rollback
+on production. Also queued: image size trim (pnpm deploy/prune), Argo CD install on the real cluster.

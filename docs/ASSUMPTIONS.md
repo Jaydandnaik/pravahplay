@@ -36,3 +36,5 @@ trigger. Superseded entries stay in place, marked superseded.
 | C-004 | 2026-10-29 | Repo location stays in OneDrive through Phase 1; relocate before Phase 2 public repo creation (risk R16) | Owner default acceptance (relocation pending) |
 
 | A-009 | 2026-11-01 | Dev machine shadows common ports (8080 = Jenkins, 5432 = shadowed listener); dev topology uses host ports 5434 (PG) and 8090 (API) | Only dev-local; production ports are container-internal | active |
+
+| A-010 | 2026-11-03 | This machine's DNS resolves `host.docker.internal` to a LAN IP (10.39.x); k3d kubeconfig patched to 127.0.0.1 locally | Dev-machine only; Oracle VM provisioning is unaffected (no docker-desktop DNS layer) | active |

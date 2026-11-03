@@ -30,4 +30,5 @@ public repo approved · brand = PravahPlay (C-001) · defaults for Q2/Q5–Q10 c
 - ✅ CI pipeline (scan+SBOM+GHCR), Helm chart, k3d config, tofu/ansible skeletons, alerts+runbook+dashboard
 - ⬜ Owner: create GitHub repo (public) or install gh CLI → I push
 - ⬜ Owner: Oracle Cloud Always Free signup (card+browser) → I provision k3s via ansible/tofu
-- ⬜ Then: helm/k3d local rollback drill → production deploy → APPROVED PHASE 2
+- ✅ k3d+Helm deploy + ROLLBACK DRILL passed locally (2026-11-03, see gate addendum)
+- ⬜ Owner: GitHub repo + Oracle signup → production deploy → full Phase 2 close
