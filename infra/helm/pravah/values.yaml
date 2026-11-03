@@ -4,7 +4,7 @@ global:
 
 api:
   image:
-    repository: ghcr.io/OWNER/pravah-api
+    repository: ghcr.io/jaydandnaik/pravah-api
     tag: latest
     pullPolicy: IfNotPresent
   replicas: 1

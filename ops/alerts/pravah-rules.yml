@@ -7,7 +7,7 @@ groups:
         labels: { severity: critical, runbook: RB-01 }
         annotations:
           summary: "pravah-api unreachable from Prometheus"
-          runbook_url: "https://github.com/OWNER/pravahplay/blob/main/ops/runbooks/RB-01-api-down.md"
+          runbook_url: "https://github.com/Jaydandnaik/pravahplay/blob/main/ops/runbooks/RB-01-api-down.md"
       - alert: ApiHighErrorRate
         expr: sum(rate(http_request_duration_seconds_count{status=~"5.."}[5m])) / sum(rate(http_request_duration_seconds_count[5m])) > 0.05
         for: 5m
