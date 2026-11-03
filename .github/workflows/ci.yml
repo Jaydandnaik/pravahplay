@@ -40,20 +40,20 @@ jobs:
           context: .
           file: apps/api/Dockerfile
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/pravah-api:${{ github.sha }},ghcr.io/${{ github.repository_owner }}/pravah-api:latest
+          tags: ghcr.io/${IMAGE_OWNER}/pravah-api:${{ github.sha }},ghcr.io/${IMAGE_OWNER}/pravah-api:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - name: Trivy scan (fail on HIGH/CRITICAL)
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: ghcr.io/${{ github.repository_owner }}/pravah-api:${{ github.sha }}
+          image-ref: ghcr.io/${IMAGE_OWNER}/pravah-api:${{ github.sha }}
           severity: HIGH,CRITICAL
           exit-code: "1"
           ignore-unfixed: "true"
       - name: SBOM (Syft)
         uses: anchore/sbom-action@v0
         with:
-          image: ghcr.io/${{ github.repository_owner }}/pravah-api:${{ github.sha }}
+          image: ghcr.io/${IMAGE_OWNER}/pravah-api:${{ github.sha }}
           format: spdx-json
           artifact-name: sbom-api.spdx.json
       - name: Secret scan
