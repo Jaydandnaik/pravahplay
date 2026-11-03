@@ -2,14 +2,17 @@
 FROM node:22-alpine AS build
 WORKDIR /repo
 RUN corepack enable
-COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
 COPY packages ./packages
 COPY apps/api/package.json ./apps/api/package.json
+COPY apps/web/package.json ./apps/web/package.json
 RUN pnpm install --frozen-lockfile --ignore-scripts
 COPY tsconfig.base.json turbo.json ./
 COPY packages ./packages
 COPY apps/api ./apps/api
-RUN pnpm --filter @pravah/api... build
+# turbo's platform binary needs postinstall scripts (blocked by --ignore-scripts);
+# pnpm's recursive filter builds in topological dependency order, which is all we need here.
+RUN pnpm -r --filter @pravah/api... build
 
 FROM node:22-alpine
 WORKDIR /app

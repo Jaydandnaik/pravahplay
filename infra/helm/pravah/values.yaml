@@ -8,6 +8,8 @@ api:
     tag: latest
     pullPolicy: IfNotPresent
   replicas: 1
+  service:
+    type: ClusterIP
   resources:
     requests: { cpu: 100m, memory: 256Mi }
     limits: { cpu: "1", memory: 512Mi }

@@ -1,4 +1,4 @@
-kind: Config
+kind: Simple
 apiVersion: k3d.io/v1alpha5
 metadata:
   name: pravah

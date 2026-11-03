@@ -1,0 +1,12 @@
+**/node_modules
+**/dist
+**/.turbo
+.git
+.github
+tools/
+spikes/
+media/
+secrets/
+docs/
+*.md
+!README.md

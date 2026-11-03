@@ -1,7 +1,8 @@
 FROM node:22-alpine AS build
 WORKDIR /repo
 RUN corepack enable
-COPY pnpm-lock.yaml pnpm-workspace.yaml ./
+COPY pnpm-lock.yaml pnpm-workspace.yaml package.json ./
+COPY apps/api/package.json ./apps/api/package.json
 COPY apps/web/package.json ./apps/web/package.json
 RUN pnpm install --frozen-lockfile --ignore-scripts
 COPY apps/web ./apps/web

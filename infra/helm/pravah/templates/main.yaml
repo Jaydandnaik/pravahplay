@@ -57,6 +57,7 @@ kind: Service
 metadata:
   name: pravah-api
 spec:
+  type: {{ .Values.api.service.type }}
   selector: { app: pravah-api }
   ports: [{ port: 80, targetPort: 8080 }]
 {{- if .Values.postgres.enabled }}

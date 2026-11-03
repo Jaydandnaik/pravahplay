@@ -1,0 +1,21 @@
+# k3d local-drill overrides: pre-imported image, LoadBalancer exposed via the
+# k3d port-map (8081:80 on the loadbalancer node).
+global:
+  environment: development
+
+api:
+  image:
+    repository: pravah-api
+    tag: dev
+    pullPolicy: Never
+  service:
+    type: LoadBalancer
+  env:
+    LOG_LEVEL: info
+    OTEL_ENABLED: "false"
+    OTEL_EXPORTER_OTLP_ENDPOINT: ""
+
+postgres:
+  enabled: true
+  auth: { database: pravah, username: pravah, password: pravah }
+  storage: 3Gi
